@@ -3,34 +3,335 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Storyboard Director | Professional Storyboarding Tool for Maya</title>
+    <title>Storyboard Director v1.3 | Professional Pre-viz Pipeline</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-        body { background-color: #0c0c0c; color: #e0e0e0; font-family: 'Inter', -apple-system, sans-serif; margin: 0; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
-        .card { background: #161616; border: 1px solid #282828; padding: 40px; border-radius: 20px; text-align: center; max-width: 450px; width: 90%; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
-        h1 { color: #ffffff; font-size: 28px; margin-bottom: 10px; letter-spacing: -0.5px; }
-        .version { color: #4a9eff; font-weight: bold; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
-        p { color: #888; line-height: 1.6; margin: 20px 0 30px; }
-        .btn { display: block; padding: 16px; margin: 12px 0; border-radius: 12px; text-decoration: none; font-weight: 600; transition: all 0.2s ease; font-size: 16px; }
-        .btn-pro { background-color: #4a9eff; color: white; border: none; box-shadow: 0 4px 15px rgba(74, 158, 255, 0.3); }
-        .btn-pro:hover { background-color: #357abd; transform: translateY(-2px); }
-        .btn-light { background: transparent; color: #ffffff; border: 1px solid #333; }
-        .btn-light:hover { background: #222; border-color: #4a9eff; }
-        .footer { margin-top: 30px; font-size: 11px; color: #444; border-top: 1px solid #222; padding-top: 20px; }
+        :root {
+            --primary-color: #00a8ff;
+            --accent-color: #fbc531;
+            --bg-dark: #0a0a0a;
+            --text-main: #e0e0e0;
+            --text-dim: #a0a0a0;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-blur: blur(12px);
+            --glass-border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            margin: 0;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        #bg-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 100%);
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header { text-align: center; padding: 70px 20px; }
+
+        h1 {
+            font-size: 3.2rem;
+            margin-bottom: 10px;
+            color: white;
+            letter-spacing: 2px;
+            text-shadow: 0 0 20px rgba(0, 168, 255, 0.5);
+        }
+
+        .version-badge {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 6px 18px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            background: #000;
+            border-radius: 12px;
+            margin: 40px 0;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+            border: 1px solid #333;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%; border: 0;
+        }
+
+        .cta-section {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin: 50px 0;
+        }
+
+        .btn {
+            padding: 18px 40px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            z-index: 10;
+        }
+
+        .btn-pro { background-color: var(--primary-color); color: white; }
+        .btn-pro:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0, 168, 255, 0.4); }
+
+        .btn-light {
+            background-color: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            color: var(--text-main);
+            border: 1px solid #444;
+        }
+
+        section { margin-bottom: 80px; }
+
+        h2 {
+            color: var(--primary-color);
+            border-left: 4px solid var(--primary-color);
+            padding-left: 15px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .glass-box {
+            background: var(--glass-bg);
+            backdrop-filter: var(--glass-blur);
+            border: var(--glass-border);
+            border-radius: 15px;
+            padding: 30px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .feature-card i {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .tech-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tech-list li {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .tech-list i { color: var(--primary-color); margin-top: 5px; }
+
+        footer { text-align: center; padding: 60px; color: var(--text-dim); border-top: 1px solid #222; font-size: 0.95rem; }
+
+        @media (max-width: 600px) { h1 { font-size: 2.2rem; } }
     </style>
 </head>
 <body>
-    <div class="card">
-        <div class="version">Storyboard Director v1.3 / v1.3 Light </div>
-        <h1>🎬 Storyboard Director</h1>
-        <p>The ultimate cinematic tool for Maya. Build shots, sequence cameras, and export professional storyboards in seconds.</p>
-        
-        <a href="https://stbdirector.gumroad.com/l/stb_director_v1" class="btn btn-pro">Upgrade to PRO Version</a>
-        <a href="https://stbdirector.gumroad.com/l/stb_light_v1" class="btn btn-light">Download Light Version</a>
-        
-        <div class="footer">
-            Designed for Cinematographers & VFX Artists<br>
-            Developed by Mohamed Fathi
-        </div>
+
+<canvas id="bg-canvas"></canvas>
+
+<header>
+    <div class="container">
+        <span class="version-badge">Storyboard Director v1.3</span>
+        <h1>Storyboard Director</h1>
+        <p style="font-size: 1.2rem; color: var(--text-dim);">Professional Cinematic Pipeline for Pre-viz Artists, Animators, and Directors.</p>
     </div>
+</header>
+
+<div class="container">
+    
+    <div class="video-container">
+        <iframe src="https://player.vimeo.com/video/1076421287?h=d5d9c2a8c1&title=0&byline=0&portrait=0" allowfullscreen></iframe>
+    </div>
+
+    <div class="cta-section">
+        <a href="https://stbdirector.gumroad.com/l/stb_director_v1" class="btn btn-pro">
+            <i class="fas fa-rocket"></i> Get Pro Version - $10
+        </a>
+        <a href="https://stbdirector.gumroad.com/l/stb_light_v1" class="btn btn-light">
+            <i class="fas fa-download"></i> Try Light Version
+        </a>
+    </div>
+
+    <section>
+        <h2>Key System Features</h2>
+        <div class="features-grid">
+            <div class="glass-box feature-card">
+                <i class="fas fa-bullseye"></i>
+                <h3>Smart Targeting System</h3>
+                <p>Centralized Dummy management allows you to swap characters and frame shots instantly without losing cinematic data.</p>
+            </div>
+            <div class="glass-box feature-card">
+                <i class="fas fa-th-large"></i>
+                <h3>1,040 Cinematic Setups</h3>
+                <p>A massive library of camera angles, shot sizes, and movement combinations tailored for high-end production.</p>
+            </div>
+            <div class="glass-box feature-card">
+                <i class="fas fa-film"></i>
+                <h3>Automated Sequencer</h3>
+                <p>Sync shots directly to a timed edit, creating a professional cinematic sequence in seconds.</p>
+            </div>
+            <div class="glass-box feature-card">
+                <i class="fas fa-vector-square"></i>
+                <h3>Production-Ready Composition</h3>
+                <p>Intuitive tools to manage focal lengths, safe areas, and shot framing within a unified directorial environment.</p>
+            </div>
+            <div class="glass-box feature-card">
+                <i class="fas fa-file-code"></i>
+                <h3>Digital Manifest Export</h3>
+                <p>Export professional HTML review pages and metadata manifests for easy directorial feedback.</p>
+            </div>
+            <div class="glass-box feature-card">
+                <i class="fas fa-bolt"></i>
+                <h3>Batch Rendering Engine</h3>
+                <p>Generate high-quality previews for all your shots with a single click, perfectly organized for review.</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>System Specifications</h2>
+        <div class="glass-box">
+            <ul class="tech-list">
+                <li><i class="fas fa-check-circle"></i> <div><strong>Modern Core:</strong> Built on Python 3 for peak performance and future-proof integration.</div></li>
+                <li><i class="fas fa-check-circle"></i> <div><strong>Universal Support:</strong> Fully compatible with Maya 2020+ and the latest industry standards.</div></li>
+                <li><i class="fas fa-check-circle"></i> <div><strong>Workflow Architecture:</strong> Designed specifically for professional Character Animation & VFX pipelines.</div></li>
+                <li><i class="fas fa-check-circle"></i> <div><strong>Scalability:</strong> Independent architecture ready to grow with your production needs.</div></li>
+            </ul>
+        </div>
+    </section>
+
+</div>
+
+<footer>
+    <p>© 2026 Storyboard Director | Precision Tools for High-End Production</p>
+</footer>
+
+<script>
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    let mouse = { x: null, y: null, radius: 120 };
+
+    window.addEventListener('mousemove', e => { mouse.x = e.x; mouse.y = e.y; });
+    window.addEventListener('mouseout', () => { mouse.x = null; mouse.y = null; });
+    window.addEventListener('mousedown', e => {
+        for (let i = 0; i < 8; i++) particles.push(new Particle(e.x, e.y, true));
+    });
+
+    class Particle {
+        constructor(x, y, isExplosion = false) {
+            this.x = x || Math.random() * canvas.width;
+            this.y = y || Math.random() * canvas.height;
+            this.vx = (Math.random() - 0.5) * 0.3;
+            this.vy = (Math.random() - 0.5) * 0.3;
+            if (isExplosion) {
+                this.vx = (Math.random() - 0.5) * 2.5; 
+                this.vy = (Math.random() - 0.5) * 2.5;
+            }
+            this.size = Math.random() * 1.2 + 0.5;
+            this.friction = 0.96;
+            this.isExplosion = isExplosion;
+            this.life = 1.0;
+        }
+        draw() {
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fillStyle = this.isExplosion ? `rgba(251, 197, 49, ${this.life})` : `rgba(0, 168, 255, 0.3)`;
+            ctx.fill();
+        }
+        update() {
+            if (mouse.x != null) {
+                let dx = this.x - mouse.x;
+                let dy = this.y - mouse.y;
+                let dist = Math.sqrt(dx*dx + dy*dy);
+                if (dist < mouse.radius) {
+                    let force = (mouse.radius - dist) / mouse.radius;
+                    this.vx += (dx / dist) * force * 0.12; 
+                    this.vy += (dy / dist) * force * 0.12;
+                }
+            }
+            this.vx *= this.friction;
+            this.vy *= this.friction;
+            this.x += this.vx;
+            this.y += this.vy;
+            if (!this.isExplosion) {
+                if (Math.abs(this.vx) < 0.05) this.vx += (Math.random() - 0.5) * 0.1;
+                if (Math.abs(this.vy) < 0.05) this.vy += (Math.random() - 0.5) * 0.1;
+            }
+            if (this.isExplosion) this.life -= 0.015;
+            if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+            if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+        }
+    }
+
+    function init() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+        particles = [];
+        for (let i = 0; i < 90; i++) particles.push(new Particle());
+    }
+
+    function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (let i = 0; i < particles.length; i++) {
+            particles[i].update();
+            particles[i].draw();
+            for (let j = i + 1; j < particles.length; j++) {
+                let dx = particles[i].x - particles[j].x;
+                let dy = particles[i].y - particles[j].y;
+                let d = Math.sqrt(dx*dx + dy*dy);
+                if (d < 110) {
+                    ctx.strokeStyle = `rgba(0, 168, 255, ${(1 - d/110) * 0.12})`;
+                    ctx.lineWidth = 0.4;
+                    ctx.beginPath();
+                    ctx.moveTo(particles[i].x, particles[i].y);
+                    ctx.lineTo(particles[j].x, particles[j].y);
+                    ctx.stroke();
+                }
+            }
+            if (particles[i].isExplosion && particles[i].life <= 0) {
+                particles.splice(i, 1); i--;
+            }
+        }
+        requestAnimationFrame(animate);
+    }
+    window.addEventListener('resize', init);
+    init(); animate();
+</script>
+
 </body>
 </html>
