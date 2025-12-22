@@ -3,27 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Storyboard Director v1.3 | Professional Pre-viz Pipeline</title>
+    <title>stbDirector v1.4 | CINEMATIC PRE-VIZ HUB</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         :root {
-            --primary-color: #FFC107;
-            --accent-color: #fbc531;
-            --bg-dark: #0a0a0a;
+            --sb-navy: #0F111A; 
+            --sb-bg: #0A0A0A; 
+            --sb-accent: #FFC107; 
             --text-main: #e0e0e0;
             --text-dim: #a0a0a0;
             --glass-bg: rgba(255, 255, 255, 0.03);
             --glass-blur: blur(12px);
-            --glass-border: 1px solid rgba(255, 255, 255, 0.08);
+            --glass-border: 1px solid rgba(255, 193, 7, 0.15);
         }
 
         body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-dark);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--sb-bg);
             color: var(--text-main);
             margin: 0;
             overflow-x: hidden;
             line-height: 1.6;
+        }
+
+        /* Scanline Effect - تعزيز بروتوكول الشاشات السينمائية */
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.1) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.02), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.02));
+            z-index: 9999;
+            background-size: 100% 4px, 3px 100%;
+            pointer-events: none;
+            opacity: 0.3;
         }
 
         #bg-canvas {
@@ -34,6 +47,45 @@
             background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 100%);
         }
 
+        header {
+            background: var(--sb-navy); 
+            color: white; 
+            padding: 10px 40px;
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            border-bottom: 4px solid var(--sb-accent); 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+        
+        .brand-wrap { display: flex; align-items: center; gap: 15px; }
+        
+        .mini-logo-icon {
+            width: 35px; height: 35px; border: 2px solid var(--sb-accent);
+            position: relative; border-radius: 3px; overflow: hidden; background: rgba(255,193,7,0.05);
+        }
+        .p-l-b { position: absolute; width: 20%; height: 30%; border: 1.5px solid var(--sb-accent); border-bottom: none; border-radius: 2px 2px 0 0; left: 15%; bottom: 0; }
+        .p-l-h { position: absolute; width: 28%; height: 28%; border: 1.5px solid var(--sb-accent); border-radius: 50%; left: 11%; bottom: 33%; transform: rotate(-10deg); }
+        .p-r-b { position: absolute; width: 50%; height: 36%; background: var(--sb-accent); border-radius: 4px 4px 0 0; right: 0; bottom: 0; }
+        .p-r-h { position: absolute; width: 56%; height: 56%; background: var(--sb-accent); border-radius: 50%; right: 2%; bottom: 36%; transform: rotate(8deg); }
+
+        .logo-text { font-weight: 900; font-size: 1.4rem; letter-spacing: -0.5px; }
+        .logo-text span { color: var(--sb-accent); }
+
+        .protocol-tag {
+            font-size: 10px;
+            letter-spacing: 1px;
+            background: rgba(255, 193, 7, 0.1);
+            color: var(--sb-accent);
+            padding: 4px 12px;
+            border: 1px solid var(--sb-accent);
+            border-radius: 4px;
+            font-weight: bold;
+        }
+
         .container {
             max-width: 1100px;
             margin: 0 auto;
@@ -42,23 +94,18 @@
             z-index: 1;
         }
 
-        header { text-align: center; padding: 70px 20px; }
-
-        h1 {
-            font-size: 3.2rem;
-            margin-bottom: 10px;
-            color: white;
-            letter-spacing: 2px;
-            text-shadow: 0 0 20px rgba(0, 168, 255, 0.5);
-        }
+        .hero-section { text-align: center; padding: 60px 20px 20px; }
 
         .version-badge {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 6px 18px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: bold;
+            background-color: var(--sb-accent);
+            color: var(--sb-navy);
+            padding: 4px 14px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 15px;
         }
 
         .video-container {
@@ -70,7 +117,7 @@
             border-radius: 12px;
             margin: 40px 0;
             box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-            border: 1px solid #333;
+            border: 1px solid rgba(255, 193, 7, 0.2);
         }
 
         .video-container iframe {
@@ -88,7 +135,7 @@
 
         .btn {
             padding: 18px 40px;
-            border-radius: 10px;
+            border-radius: 8px;
             text-decoration: none;
             font-weight: bold;
             font-size: 1.1rem;
@@ -96,11 +143,10 @@
             display: flex;
             align-items: center;
             gap: 12px;
-            z-index: 10;
         }
 
-        .btn-pro { background-color: var(--primary-color); color: white; }
-        .btn-pro:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0, 168, 255, 0.4); }
+        .btn-pro { background-color: var(--sb-accent); color: var(--sb-navy); }
+        .btn-pro:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(255, 193, 7, 0.3); }
 
         .btn-light {
             background-color: var(--glass-bg);
@@ -108,15 +154,15 @@
             color: var(--text-main);
             border: 1px solid #444;
         }
-
-        section { margin-bottom: 80px; }
+        .btn-light:hover { border-color: var(--sb-accent); }
 
         h2 {
-            color: var(--primary-color);
-            border-left: 4px solid var(--primary-color);
+            color: var(--sb-accent);
+            border-left: 4px solid var(--sb-accent);
             padding-left: 15px;
             margin-bottom: 30px;
             text-transform: uppercase;
+            font-size: 1.5rem;
         }
 
         .glass-box {
@@ -135,28 +181,26 @@
 
         .feature-card i {
             font-size: 2rem;
-            color: var(--accent-color);
+            color: var(--sb-accent);
             margin-bottom: 15px;
             display: block;
         }
 
-        .tech-list {
-            list-style: none;
-            padding: 0;
+        .tech-list { list-style: none; padding: 0; }
+        .tech-list li { margin-bottom: 20px; display: flex; align-items: flex-start; gap: 15px; }
+        .tech-list i { color: var(--sb-accent); font-size: 1.2rem; margin-top: 4px; }
+
+        footer { 
+            background: var(--sb-navy); 
+            color: var(--sb-accent); 
+            text-align: center; 
+            padding: 20px; 
+            font-size: 11px; 
+            font-weight: 600; 
+            border-top: 2px solid var(--sb-accent);
+            margin-top: 80px;
+            letter-spacing: 1px;
         }
-
-        .tech-list li {
-            margin-bottom: 15px;
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-        }
-
-        .tech-list i { color: var(--primary-color); margin-top: 5px; }
-
-        footer { text-align: center; padding: 60px; color: var(--text-dim); border-top: 1px solid #222; font-size: 0.95rem; }
-
-        @media (max-width: 600px) { h1 { font-size: 2.2rem; } }
     </style>
 </head>
 <body>
@@ -164,15 +208,22 @@
 <canvas id="bg-canvas"></canvas>
 
 <header>
-    <div class="container">
-        <span class="version-badge">Storyboard Director v1.3</span>
-        <h1>Storyboard Director</h1>
-        <p style="font-size: 1.2rem; color: var(--text-dim);">Professional Cinematic Pipeline for Pre-viz Artists, Animators, and Directors.</p>
+    <div class="brand-wrap">
+        <div class="mini-logo-icon">
+            <div class="p-l-h"></div><div class="p-l-b"></div>
+            <div class="p-r-h"></div><div class="p-r-b"></div>
+        </div>
+        <div class="logo-text">stb<span>Director</span></div>
     </div>
 </header>
 
 <div class="container">
-    
+    <div class="hero-section">
+
+        <h1 style="font-size: 3rem; color: white; margin-top: 5px;">Professional Pre-viz Pipeline</h1>
+        <p style="font-size: 1.2rem; color: var(--text-dim);">The ultimate toolkit for pre-viz artists, animators, and directors.</p>
+    </div>
+
     <div class="video-container">
         <iframe src="https://player.vimeo.com/video/1076421287?h=d5d9c2a8c1&title=0&byline=0&portrait=0" allowfullscreen></iframe>
     </div>
@@ -233,11 +284,10 @@
             </ul>
         </div>
     </section>
-
 </div>
 
 <footer>
-    <p>© 2026 Storyboard Director | Precision Tools for High-End Production</p>
+    stbDirector v1.4 | CINEMATIC PRE-VIZ HUB
 </footer>
 
 <script>
@@ -270,7 +320,7 @@
         draw() {
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fillStyle = this.isExplosion ? `rgba(251, 197, 49, ${this.life})` : `rgba(0, 168, 255, 0.3)`;
+            ctx.fillStyle = this.isExplosion ? `rgba(255, 193, 7, ${this.life})` : `rgba(255, 193, 7, 0.3)`;
             ctx.fill();
         }
         update() {
