@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support Hub | stbDirector</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --sb-navy: #0F111A; 
+            --sb-accent: #FFC107; 
+            --sb-white: #FFFFFF;
+            --sb-light-grey: #F4F6F8;
+            --text-dark: #1A1A1A;
+            --text-muted: #555;
+        }
+
+        body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--sb-light-grey); color: var(--text-dark); line-height: 1.6; }
+
+        /* --- Header --- */
+        header { background: var(--sb-navy); color: white; padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid var(--sb-accent); position: sticky; top: 0; z-index: 1000; }
+        .logo-text { font-weight: 900; font-size: 1.4rem; }
+        .logo-text span { color: var(--sb-accent); }
+        .back-link { color: white; text-decoration: none; font-size: 14px; font-weight: bold; transition: 0.3s; }
+        .back-link:hover { color: var(--sb-accent); }
+
+        .support-container { max-width: 900px; margin: 50px auto; padding: 0 20px; }
+        h1 { text-align: center; color: var(--sb-navy); margin-bottom: 40px; font-size: 2.5rem; }
+
+        .card { background: white; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); padding: 40px; margin-bottom: 30px; }
+        
+        /* --- FAQ Accordion System --- */
+        .faq-category-title { color: var(--sb-navy); border-left: 4px solid var(--sb-accent); padding-left: 15px; margin: 30px 0 20px; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; font-weight: bold; }
+        
+        .faq-item { border: 1px solid #eee; border-radius: 8px; margin-bottom: 10px; overflow: hidden; transition: 0.3s; }
+        
+        .faq-question { 
+            background: #fff; padding: 18px 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; 
+            font-weight: 600; color: var(--sb-navy); user-select: none; transition: 0.3s;
+        }
+        .faq-question:hover { background: #fafafa; }
+        .faq-question i { color: var(--sb-accent); transition: 0.3s; }
+
+        .faq-answer { 
+            max-height: 0; overflow: hidden; transition: all 0.4s cubic-bezier(0, 1, 0, 1); background: #fff;
+        }
+        .faq-answer p { padding: 0 25px 20px; margin: 0; color: var(--text-muted); font-size: 0.95rem; }
+
+        .faq-item.active { border-color: var(--sb-accent); box-shadow: 0 5px 15px rgba(255,193,7,0.1); }
+        .faq-item.active .faq-answer { max-height: 1000px; transition: all 0.4s cubic-bezier(1, 0, 1, 0); }
+        .faq-item.active .faq-question { color: var(--sb-accent); }
+        .faq-item.active .faq-question i { transform: rotate(180deg); }
+
+        .btn-send { background: var(--sb-navy); color: var(--sb-accent); border: none; padding: 15px; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .btn-send:hover { background: var(--sb-accent); color: var(--sb-navy); }
+
+        footer { text-align: center; padding: 40px; color: #888; font-size: 12px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="logo-text">stb<span>Director</span> Support</div>
+    <a href="../" class="back-link"><i class="fas fa-arrow-left"></i> BACK TO HOME</a>
+</header>
+
+<div class="support-container">
+    <h1>Support Hub</h1>
+
+    <div class="card">
+        <div class="faq-category-title">Getting Started</div>
+        
+        <div class="faq-item">
+            <div class="faq-question">How to install stbDirector? <i class="fas fa-chevron-down"></i></div>
+            <div class="faq-answer"><p>Drag and drop the install.mel file into your Maya viewport and use the shelf icon.</p></div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">License Key Issues? <i class="fas fa-chevron-down"></i></div>
+            <div class="faq-answer"><p>If you didn't receive your key via Gumroad, please check your spam folder or contact us through the ticket button below.</p></div>
+        </div>
+
+        <div class="faq-category-title">Technical Support</div>
+        
+        <div class="faq-item">
+            <div class="faq-question">Does it support Maya 2025? <i class="fas fa-chevron-down"></i></div>
+            <div class="faq-answer"><p>Yes, the tool is built on Python 3 and is fully compatible with Maya 2020 through the latest version (2025+).</p></div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Does it require any additional plugins? <i class="fas fa-chevron-down"></i></div>
+            <div class="faq-answer"><p>No, stbDirector operates as a standalone tool within Maya and does not require any external libraries or third-party plugins.</p></div>
+        </div>
+
+        <div class="faq-category-title">Licensing & Access</div>
+
+        <div class="faq-item">
+            <div class="faq-question">What is the difference between Pro and Light versions? <i class="fas fa-chevron-down"></i></div>
+            <div class="faq-answer">
+                <p>
+                    <strong>Light version:</strong> Designed for evaluation, giving you access to the full 1,040 camera setups for use in a single scene. <br><br>
+                    <strong>Pro version:</strong> Built for professional teams and large-scale projects. It includes multi-camera management, automated cinematic sequencing, storyboard export with technical data, and a "One-Click Batch Render" engine.
+                </p>
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">Can I use the license on multiple devices? <i class="fas fa-chevron-down"></i></div>
+            <div class="faq-answer"><p>Standard licenses are typically for a single device. However, we offer Team bundles that support 5 or more devices depending on your production needs.</p></div>
+        </div>
+
+        <div class="faq-item">
+            <div class="faq-question">How do I receive new updates? <i class="fas fa-chevron-down"></i></div>
+            <div class="faq-answer"><p>Updates are delivered automatically via Gumroad. You will receive an email notification whenever a new version or patch is released.</p></div>
+        </div>
+    </div>
+
+    <div class="card" style="text-align: center;">
+        <h2>Still need help?</h2>
+        <p>Our technical team is ready to assist you with any pipeline issues.</p>
+        <a href="mailto:support@stbdirector.com" class="btn-send" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 10px; width: 100%; box-sizing: border-box;">
+            <i class="fas fa-paper-plane"></i> SEND TICKET
+        </a>
+    </div>
+</div>
+
+<footer>
+    stbDirector v1.4 | PROFESSIONAL PRE-VIZ SUPPORT
+</footer>
+
+<script>
+    document.querySelectorAll('.faq-question').forEach(button => {
+        button.addEventListener('click', () => {
+            const faqItem = button.parentElement;
+            document.querySelectorAll('.faq-item').forEach(item => {
+                if (item !== faqItem) item.classList.remove('active');
+            });
+            faqItem.classList.toggle('active');
+        });
+    });
+</script>
+
+</body>
+</html>
