@@ -107,6 +107,30 @@
             text-align: center; padding: 30px; border-top: 4px solid var(--sb-accent);
             font-weight: bold; font-size: 12px;
         }
+		
+
+		header { padding: 5px 15px !important; min-height: 50px; }
+		.brand-wrap { gap: 10px !important; }
+		.logo-text { font-size: 1.2rem !important; white-space: nowrap; }
+
+		.hero { padding: 15px 0 !important; }
+		.hero h1 { font-size: 2rem !important; margin-bottom: 5px !important; }
+		.tagline { margin: 5px 0 15px !important; font-size: 1.1rem !important; }
+		.feature-block { padding: 15px 0 !important; }
+		.about-section, .pricing-wrap { padding: 15px 0 !important; }
+
+
+		.container { max-width: 95% !important; width: 1200px !important; }
+		.hero p { max-width: 90% !important; }
+
+
+		@media (max-width: 600px) {
+			header { padding: 5px 10px !important; }
+			.logo-text { font-size: 1rem !important; }
+			.back-link { font-size: 12px !important; gap: 4px !important; }
+			.hero h1 { font-size: 1.5rem !important; }
+		}
+
     </style>
 </head>
 <body>
@@ -124,7 +148,8 @@
         <a href="#video-top">Home</a>
         <a href="#features-sec">Features</a>
         <a href="#specs-sec">Specs</a>
-        <a href="https://stbdirector.com/support" target="_blank" style="color: var(--sb-accent);"><i class="fas fa-question-circle"></i> Help</a>
+		<a href="https://stbdirector.com/Store" target="_blank"></i> Store</a>
+        <a href="https://stbdirector.com/support" target="_blank"></i> Help</a>
     </nav>
 </header>
 
@@ -136,7 +161,6 @@
         <div class="video-box">
 			<iframe src="https://www.youtube.com/embed/bd7kh2kxnAE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 		</div>
-
         <div>
             <a href="https://stbdirector.gumroad.com/l/stb_director_v1" class="btn btn-pro"><i class="fas fa-rocket"></i> Get Pro Version - $20</a>
             <a href="https://stbdirector.gumroad.com/l/stb_light_v1" class="btn btn-light"><i class="fas fa-download"></i> Try Light Version</a>
@@ -163,7 +187,7 @@
         <h2><span>System Specifications</span></h2>
         <div class="grid">
             <div class="spec-item"><strong>Modern Core</strong>Built on Python 3 for peak performance and future-proof integration.</div>
-            <div class="spec-item"><strong>Universal Support</strong>Fully compatible with Maya 2022+ and the latest industry standards.</div>
+            <div class="spec-item"><strong>Universal Support</strong>Fully compatible with Maya 2020+ and the latest industry standards.</div>
             <div class="spec-item"><strong>Workflow Architecture</strong>Designed specifically for professional Character Animation & VFX pipelines.</div>
             <div class="spec-item"><strong>Scalability</strong>Independent architecture ready to grow with your production needs.</div>
 			<div class="spec-item"><strong>Zero-Configuration</strong>One-click setup process with no external dependencies for immediate deployment.</div>
