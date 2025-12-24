@@ -17,51 +17,97 @@
 
         body { font-family: 'Segoe UI', sans-serif; margin: 0; background: var(--sb-light-grey); color: var(--text-dark); line-height: 1.6; }
 
-        /* --- Header --- */
-        header { background: var(--sb-navy); color: white; padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; border-bottom: 4px solid var(--sb-accent); position: sticky; top: 0; z-index: 1000; }
-        .logo-text { font-weight: 900; font-size: 1.4rem; }
+        /* --- Header (Corrected Structure) --- */
+        header {
+            background: var(--sb-navy);
+            color: white;
+            padding: 10px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid var(--sb-accent);
+            position: sticky; top: 0; z-index: 1000;
+        }
+
+        /* تجميع اللوجو والنص في جهة اليسار */
+        .brand-link { 
+            display: flex; 
+            align-items: center; 
+            gap: 15px; 
+            text-decoration: none; 
+            color: white; 
+        }
+        
+        /* كود اللوجو المربع الثابت */
+        .mini-logo-icon {
+            width: 32px; height: 32px; border: 2px solid var(--sb-accent);
+            position: relative; border-radius: 3px; flex-shrink: 0;
+        }
+        .p-l-b { position: absolute; width: 20%; height: 30%; border: 1.5px solid var(--sb-accent); border-bottom: none; left: 15%; bottom: 0; }
+        .p-l-h { position: absolute; width: 28%; height: 28%; border: 1.5px solid var(--sb-accent); border-radius: 50%; left: 11%; bottom: 33%; transform: rotate(-10deg); }
+        .p-r-b { position: absolute; width: 50%; height: 36%; background: var(--sb-accent); right: 0; bottom: 0; }
+        .p-r-h { position: absolute; width: 56%; height: 56%; background: var(--sb-accent); border-radius: 50%; right: 2%; bottom: 36%; transform: rotate(8deg); }
+
+        .logo-text { font-weight: 900; font-size: 1.5rem; line-height: 1; }
         .logo-text span { color: var(--sb-accent); }
-        .back-link { color: white; text-decoration: none; font-size: 14px; font-weight: bold; transition: 0.3s; }
+        .logo-text small { font-size: 0.9rem; font-weight: 300; opacity: 0.8; margin-left: 5px; color: white; }
+
+        /* زر العودة جهة اليمين */
+        .back-link { 
+            color: white; 
+            text-decoration: none; 
+            font-size: 13px; 
+            font-weight: bold; 
+            transition: 0.3s; 
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
         .back-link:hover { color: var(--sb-accent); }
 
+        /* Support Page Content */
         .support-container { max-width: 900px; margin: 50px auto; padding: 0 20px; }
         h1 { text-align: center; color: var(--sb-navy); margin-bottom: 40px; font-size: 2.5rem; }
 
         .card { background: white; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); padding: 40px; margin-bottom: 30px; }
-        
-        /* --- FAQ Accordion System --- */
         .faq-category-title { color: var(--sb-navy); border-left: 4px solid var(--sb-accent); padding-left: 15px; margin: 30px 0 20px; font-size: 1.1rem; text-transform: uppercase; letter-spacing: 1px; font-weight: bold; }
-        
         .faq-item { border: 1px solid #eee; border-radius: 8px; margin-bottom: 10px; overflow: hidden; transition: 0.3s; }
-        
-        .faq-question { 
-            background: #fff; padding: 18px 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; 
-            font-weight: 600; color: var(--sb-navy); user-select: none; transition: 0.3s;
-        }
+        .faq-question { background: #fff; padding: 18px 25px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; color: var(--sb-navy); user-select: none; transition: 0.3s; }
         .faq-question:hover { background: #fafafa; }
         .faq-question i { color: var(--sb-accent); transition: 0.3s; }
-
-        .faq-answer { 
-            max-height: 0; overflow: hidden; transition: all 0.4s cubic-bezier(0, 1, 0, 1); background: #fff;
-        }
+        .faq-answer { max-height: 0; overflow: hidden; transition: all 0.4s cubic-bezier(0, 1, 0, 1); background: #fff; }
         .faq-answer p { padding: 0 25px 20px; margin: 0; color: var(--text-muted); font-size: 0.95rem; }
-
         .faq-item.active { border-color: var(--sb-accent); box-shadow: 0 5px 15px rgba(255,193,7,0.1); }
         .faq-item.active .faq-answer { max-height: 1000px; transition: all 0.4s cubic-bezier(1, 0, 1, 0); }
         .faq-item.active .faq-question { color: var(--sb-accent); }
         .faq-item.active .faq-question i { transform: rotate(180deg); }
 
-        .btn-send { background: var(--sb-navy); color: var(--sb-accent); border: none; padding: 15px; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.3s; }
+        .btn-send { background: var(--sb-navy); color: var(--sb-accent); border: none; padding: 15px; border-radius: 6px; font-weight: bold; cursor: pointer; transition: 0.3s; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 10px; width: 100%; box-sizing: border-box;}
         .btn-send:hover { background: var(--sb-accent); color: var(--sb-navy); }
 
         footer { text-align: center; padding: 40px; color: #888; font-size: 12px; }
+
+        @media (max-width: 768px) {
+            header { padding: 10px 20px; }
+            .back-link span { display: none; }
+        }
     </style>
 </head>
 <body>
 
 <header>
-    <div class="logo-text">stb<span>Director</span> Support</div>
-    <a href="../" class="back-link"><i class="fas fa-arrow-left"></i> BACK TO HOME</a>
+    <a href="../" class="brand-link">
+        <div class="mini-logo-icon">
+            <div class="p-l-h"></div><div class="p-l-b"></div>
+            <div class="p-r-h"></div><div class="p-r-b"></div>
+        </div>
+        <div class="logo-text">stb<span>Director</span> <small>Support</small></div>
+    </a>
+
+    <a href="../" class="back-link">
+        <i class="fas fa-arrow-left"></i> <span>BACK TO HOME</span>
+    </a>
 </header>
 
 <div class="support-container">
@@ -71,21 +117,21 @@
         <div class="faq-category-title">Getting Started</div>
         
         <div class="faq-item">
-			<div class="faq-question">How to install stbDirector? <i class="fas fa-chevron-down"></i></div>
-			<div class="faq-answer">
-				<div style="font-family: monospace; background: #f4f4f4; color: #333; padding: 15px; border-left: 4px solid #ffc107;">
-					<strong>1. Copy Folder:</strong><br>
-					Copy <code>stbDirector_Light_v1.4</code> to:<br>
-					<code>Documents\maya\202x\scripts\</code><br><br>
+            <div class="faq-question">How to install stbDirector? <i class="fas fa-chevron-down"></i></div>
+            <div class="faq-answer">
+                <div style="font-family: monospace; background: #f4f4f4; color: #333; padding: 15px; border-left: 4px solid #ffc107; margin: 0 25px 20px;">
+                    <strong>1. Copy Folder:</strong><br>
+                    Copy <code>stbDirector_Light_v1.4</code> to:<br>
+                    <code>Documents\maya\202x\scripts\</code><br><br>
 
-					<strong>2. Create Shelf Button:</strong><br>
-					Open <code>shelf button.py</code> and copy its code to a new Python shelf button in Maya.<br><br>
+                    <strong>2. Create Shelf Button:</strong><br>
+                    Open <code>shelf button.py</code> and copy its code to a new Python shelf button in Maya.<br><br>
 
-					<strong>3. Activation:</strong><br>
-					Launch the tool and enter your License Key (Internet required).
-				</div>
-			</div>
-		</div>
+                    <strong>3. Activation:</strong><br>
+                    Launch the tool and enter your License Key (Internet required).
+                </div>
+            </div>
+        </div>
 
         <div class="faq-item">
             <div class="faq-question">License Key Issues? <i class="fas fa-chevron-down"></i></div>
@@ -130,7 +176,7 @@
     <div class="card" style="text-align: center;">
         <h2>Still need help?</h2>
         <p>Our technical team is ready to assist you with any pipeline issues.</p>
-        <a href="mailto:support@stbdirector.com" class="btn-send" style="text-decoration: none; display: inline-flex; align-items: center; justify-content: center; gap: 10px; width: 100%; box-sizing: border-box;">
+        <a href="mailto:support@stbdirector.com" class="btn-send">
             <i class="fas fa-paper-plane"></i> SEND TICKET
         </a>
     </div>
