@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Details | stbDirector v1.4</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+<style>
+        :root {
+            --sb-navy: #0F111A; 
+            --sb-accent: #FFC107; 
+            --sb-white: #FFFFFF;
+            --sb-light-grey: #F1F3F5;
+            --text-dark: #1A1A1A;
+            --text-muted: #444;
+        }
+
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; padding: 0; background-color: var(--sb-white); color: var(--text-dark); line-height: 1.6; }
+
+        /* --- Header (Unified Styles) --- */
+        header { 
+            background: var(--sb-navy); 
+            color: white; 
+            padding: 10px 40px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            border-bottom: 4px solid var(--sb-accent); 
+            position: sticky; top: 0; z-index: 1000; 
+        }
+
+        /* تنسيق اللوجو والنص جهة اليسار */
+        .brand-wrap { display: flex; align-items: center; gap: 15px; text-decoration: none; color: white; }
+        
+        .mini-logo-icon {
+            width: 32px; height: 32px; border: 2px solid var(--sb-accent);
+            position: relative; border-radius: 3px; flex-shrink: 0;
+        }
+        .p-l-b { position: absolute; width: 20%; height: 30%; border: 1.5px solid var(--sb-accent); border-bottom: none; left: 15%; bottom: 0; }
+        .p-l-h { position: absolute; width: 28%; height: 28%; border: 1.5px solid var(--sb-accent); border-radius: 50%; left: 11%; bottom: 33%; transform: rotate(-10deg); }
+        .p-r-b { position: absolute; width: 50%; height: 36%; background: var(--sb-accent); right: 0; bottom: 0; }
+        .p-r-h { position: absolute; width: 56%; height: 56%; background: var(--sb-accent); border-radius: 50%; right: 2%; bottom: 36%; transform: rotate(8deg); }
+
+        .logo-text { font-weight: 900; font-size: 1.5rem; line-height: 1; }
+        .logo-text span { color: var(--sb-accent); }
+        .logo-text small { font-size: 0.9rem; font-weight: 300; opacity: 0.8; margin-left: 5px; color: white; }
+
+        .back-link { 
+            color: white; 
+            text-decoration: none; 
+            font-size: 14px; 
+            font-weight: bold; 
+            transition: 0.3s; 
+            display: flex; 
+            align-items: center; 
+            gap: 8px; 
+            text-transform: uppercase;
+        }
+        .back-link:hover { color: var(--sb-accent); }
+
+        /* --- Page Layout --- */
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+
+        /* --- Hero Section --- */
+        .hero { padding: 80px 20px; text-align: center; background: var(--sb-white); }
+        .hero h1 { font-size: 2.8rem; color: var(--sb-navy); margin: 0; }
+        .hero h1 span { color: var(--sb-accent); }
+        .tagline { font-size: 1.4rem; color: var(--sb-accent); font-weight: 600; display: block; margin: 10px 0 25px; }
+        .hero p { max-width: 850px; margin: 0 auto; font-size: 1.1rem; color: var(--text-muted); }
+
+        /* --- Features & Content --- */
+        .section-header { text-align: center; padding: 40px 0; background: var(--sb-light-grey); color: var(--sb-navy); font-weight: 900; text-transform: uppercase; letter-spacing: 2px; }
+        
+        .feature-block { padding: 60px 0; border-bottom: 1px solid #eee; }
+        .feature-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px; margin-top: 30px; }
+        .feature-item h3 { color: var(--sb-navy); display: flex; align-items: center; gap: 10px; font-size: 1.2rem; }
+        .feature-item i { color: var(--sb-accent); }
+        .feature-item ul { padding-left: 20px; color: var(--text-muted); font-size: 0.95rem; }
+        .feature-item ul li { margin-bottom: 10px; }
+
+        /* --- Licensing Table --- */
+        .pricing-wrap { padding: 80px 0; background: var(--sb-white); }
+        .pricing-table { width: 100%; border-collapse: collapse; margin-top: 20px; border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .pricing-table th { background: var(--sb-navy); color: var(--sb-accent); padding: 20px; text-align: left; text-transform: uppercase; font-size: 13px; }
+        .pricing-table td { padding: 20px; border-bottom: 1px solid #eee; }
+        .price-val { font-weight: 900; color: var(--sb-navy); font-size: 1.2rem; }
+
+        /* --- About Section --- */
+        .about-section { padding: 80px 0; text-align: center; }
+        .about-content { max-width: 800px; margin: 0 auto; background: var(--sb-light-grey); padding: 40px; border-radius: 20px; }
+        .btn-final { background: var(--sb-accent); color: var(--sb-navy); padding: 20px 45px; border-radius: 8px; text-decoration: none; font-weight: 900; font-size: 1.3rem; display: inline-block; margin-top: 30px; transition: 0.3s; border: 2px solid transparent; }
+        .btn-final:hover { background: var(--sb-navy); color: var(--sb-accent); border-color: var(--sb-accent); }
+
+        footer { background: var(--sb-navy); color: var(--sb-accent); text-align: center; padding: 30px; border-top: 4px solid var(--sb-accent); font-weight: bold; font-size: 12px; }
+
+        @media (max-width: 768px) {
+            header { padding: 10px 20px; }
+            .hero h1 { font-size: 1.8rem; }
+            .pricing-table { font-size: 12px; }
+            .back-link span { display: none; } /* إخفاء النص في الجوال لإبقاء الهيدر نظيفاً */
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="brand-wrap">
+        <div class="mini-logo-icon">
+            <div class="p-l-h"></div><div class="p-l-b"></div>
+            <div class="p-r-h"></div><div class="p-r-b"></div>
+        </div>
+       <div class="logo-text">stb<span>Director</span> <small>Store</small></div>
+    </div>
+    <a href="../" class="back-link"><i class="fas fa-arrow-left"></i> BACK TO HOME</a>
+</header>
+
+<section class="hero container">
+    <h1>stb<span>Director</span> v1.4 | Ultimate Pre-viz Hub</h1>
+    <span class="tagline">Stop wrestling with cameras. Start directing your story.</span>
+    <p>
+        stbDirector v1.4 is a powerhouse directorial workflow featuring 1,040 unique cinematic camera setups. 
+        It is designed to take you from a blank scene to a fully timed, named, and organized cinematic sequence in minutes, not hours.
+        By utilizing a Centralized Reference System, the tool ensures your cinematography is always perfectly framed and production-ready.
+    </p>
+</section>
+
+<div class="section-header">🚀 Key Features & Workflow</div>
+
+<section class="feature-block container">
+    <div class="feature-grid">
+        <div class="feature-item">
+            <h3><i class="fas fa-video"></i> 1,040 Cinematic Combinations</h3>
+            <ul>
+                <li>Professional camera setups based on industry standards.</li>
+                <li><strong>10 Frame Sizes | 4 Angles | 13 Movements.</strong></li>
+                <li>Pre-configured and ready to deploy instantly.</li>
+                <li>Covers extreme close-ups to dynamic sweeping shots.</li>
+            </ul>
+        </div>
+        <div class="feature-item">
+            <h3><i class="fas fa-bullseye"></i> Smart Reference System</h3>
+            <ul>
+                <li><strong>Centralized Dummy:</strong> Automatic focus point at scene origin.</li>
+                <li><strong>Instant Swap:</strong> Replace dummy with your asset; 1000+ cameras track it perfectly.</li>
+                <li><strong>Dual Targeting:</strong> Switch focus between Characters and Objects with one click.</li>
+            </ul>
+        </div>
+        <div class="feature-item">
+            <h3><i class="fas fa-film"></i> Seamless Sequencer Integration</h3>
+            <ul>
+                <li>No more manual timeline management.</li>
+                <li>Automatically named, organized, and synced in Maya Camera Sequencer.</li>
+                <li>Provides an instant, editable timeline for immediate review.</li>
+            </ul>
+        </div>
+        <div class="feature-item">
+            <h3><i class="fas fa-file-export"></i> Director’s Manifest & Outputs</h3>
+            <ul>
+                <li><strong>HTML/TXT Review Page:</strong> Export printable summaries with full metadata.</li>
+                <li><strong>One-Click Playblasts:</strong> Batch-process video previews for every shot.</li>
+                <li><strong>Organized Hierarchy:</strong> Files perfectly named for editorial rough-cuts.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<div class="section-header">💳 Licensing Options</div>
+
+<section class="pricing-wrap container">
+    <table class="pricing-table">
+        <thead>
+            <tr>
+                <th>License Type</th>
+                <th>Price</th>
+                <th>Best For</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Individual License</strong></td>
+                <td class="price-val">$20</td>
+                <td>Freelancers & Students (1 Seat)</td>
+            </tr>
+            <tr>
+                <td><strong>Studio/Team License</strong></td>
+                <td class="price-val">$75</td>
+                <td>Indie Teams (Up to 5 Seats)</td>
+            </tr>
+            <tr>
+                <td><strong>Enterprise License</strong></td>
+                <td class="price-val">$180</td>
+                <td>Large Departments (15 Seats + Priority Support)</td>
+            </tr>
+        </tbody>
+    </table>
+    <p style="text-align: center; color: var(--text-muted); font-size: 10px; margin-top: 10px;">
+        * All licenses include free maintenance updates and bug fixes for the entire v1.x lifecycle.
+    </p>
+</section>
+
+<section class="about-section container">
+    <div class="about-content">
+        <h2>📖 About the Project</h2>
+        <p>
+            The stbDirector project is dedicated to standardizing and professionalizing the pre-visualization process within Autodesk Maya. 
+            Our mission is to empower directors and artists to spend less time on manual setups and more time on the art of cinematography.
+        </p>
+        <a href="https://stbdirector.gumroad.com" class="btn-final">GET STBDIRECTOR V1.4 NOW</a>
+    </div>
+</section>
+
+<footer>
+    stbDirector v1.4 | PROFESSIONAL PRE-VIZ HUB
+</footer>
+
+</body>
+</html>
