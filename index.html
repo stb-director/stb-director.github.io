@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>stbDirector | Professional Pre-viz Pipeline</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --sb-navy: #0F111A; 
+            --sb-accent: #FFC107; 
+            --sb-white: #FFFFFF;
+            --sb-light-grey: #F1F3F5;
+            --text-dark: #1A1A1A;
+            --text-muted: #444;
+        }
+
+        /* تحسين التمرير ليكون ناعماً عند الضغط على الروابط */
+        html { scroll-behavior: smooth; }
+
+        body { 
+            font-family: 'Segoe UI', Tahoma, sans-serif; 
+            margin: 0; padding: 0;
+            background-color: var(--sb-white);
+            color: var(--text-dark);
+        }
+
+        /* --- Header --- */
+        header {
+            background: var(--sb-navy);
+            color: white;
+            padding: 10px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 4px solid var(--sb-accent);
+            position: sticky; top: 0; z-index: 1000;
+        }
+
+        .brand-wrap { display: flex; align-items: center; gap: 15px; }
+        .mini-logo-icon {
+            width: 32px; height: 32px; border: 2px solid var(--sb-accent);
+            position: relative; border-radius: 3px;
+        }
+        .p-l-b { position: absolute; width: 20%; height: 30%; border: 1.5px solid var(--sb-accent); border-bottom: none; left: 15%; bottom: 0; }
+        .p-l-h { position: absolute; width: 28%; height: 28%; border: 1.5px solid var(--sb-accent); border-radius: 50%; left: 11%; bottom: 33%; transform: rotate(-10deg); }
+        .p-r-b { position: absolute; width: 50%; height: 36%; background: var(--sb-accent); right: 0; bottom: 0; }
+        .p-r-h { position: absolute; width: 56%; height: 56%; background: var(--sb-accent); border-radius: 50%; right: 2%; bottom: 36%; transform: rotate(8deg); }
+
+        .logo-text { font-weight: 900; font-size: 1.5rem; }
+        .logo-text span { color: var(--sb-accent); }
+
+        /* Navigation Links */
+        nav { display: flex; gap: 20px; align-items: center; }
+        nav a { 
+            color: white; text-decoration: none; font-size: 14px; 
+            font-weight: 600; transition: 0.3s; text-transform: uppercase;
+        }
+        nav a:hover { color: var(--sb-accent); }
+        
+        .nav-btn-special {
+            background: rgba(255,255,255,0.1);
+            padding: 6px 15px;
+            border-radius: 4px;
+            border: 1px solid transparent;
+        }
+        .nav-btn-special:hover { border-color: var(--sb-accent); background: transparent; }
+
+        /* --- Sections Container --- */
+        .section-padding { padding: 80px 20px; }
+        .container { max-width: 1100px; margin: 0 auto; }
+
+        /* --- Hero Section --- */
+        .hero-white { background-color: var(--sb-white); text-align: center; }
+        .video-box {
+            position: relative; padding-bottom: 56.25%; height: 0; background: #000;
+            border-radius: 12px; overflow: hidden; margin: 40px 0;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1); border: 1px solid #eee;
+        }
+        .video-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+
+        .btn { 
+            padding: 16px 35px; border-radius: 8px; text-decoration: none; 
+            font-weight: bold; transition: 0.3s; display: inline-flex; align-items: center; gap: 10px;
+        }
+        .btn-pro { background: var(--sb-accent); color: var(--sb-navy); }
+        .btn-light { background: var(--sb-navy); color: white; margin-left: 15px; }
+
+        /* --- Features Section --- */
+        .features-grey { background-color: var(--sb-light-grey); }
+        h2 { text-align: center; color: var(--sb-navy); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 50px; }
+        h2 span { border-bottom: 3px solid var(--sb-accent); padding-bottom: 5px; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; }
+        .card { background: var(--sb-white); padding: 30px; border-radius: 12px; transition: 0.3s; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.05); }
+        .card i { color: var(--sb-accent); font-size: 1.8rem; margin-bottom: 20px; display: block; }
+
+        /* --- Specs Section --- */
+        .specs-white { background-color: var(--sb-white); }
+        .spec-item { background: var(--sb-navy); color: white; padding: 25px; border-radius: 10px; }
+        .spec-item strong { color: var(--sb-accent); text-transform: uppercase; font-size: 0.85rem; display: block; }
+
+        /* --- Footer --- */
+        footer { 
+            background: var(--sb-navy); color: var(--sb-accent); 
+            text-align: center; padding: 30px; border-top: 4px solid var(--sb-accent);
+            font-weight: bold; font-size: 12px;
+        }
+		
+
+		header { padding: 5px 15px !important; min-height: 50px; }
+		.brand-wrap { gap: 10px !important; }
+		.logo-text { font-size: 1.2rem !important; white-space: nowrap; }
+
+		.hero { padding: 15px 0 !important; }
+		.hero h1 { font-size: 2rem !important; margin-bottom: 5px !important; }
+		.tagline { margin: 5px 0 15px !important; font-size: 1.1rem !important; }
+		.feature-block { padding: 15px 0 !important; }
+		.about-section, .pricing-wrap { padding: 15px 0 !important; }
+
+
+		.container { max-width: 95% !important; width: 1200px !important; }
+		.hero p { max-width: 90% !important; }
+
+
+		@media (max-width: 600px) {
+			header { padding: 5px 10px !important; }
+			.logo-text { font-size: 1rem !important; }
+			.back-link { font-size: 12px !important; gap: 4px !important; }
+			.hero h1 { font-size: 1.5rem !important; }
+		}
+
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="brand-wrap">
+        <div class="mini-logo-icon">
+            <div class="p-l-h"></div><div class="p-l-b"></div>
+            <div class="p-r-h"></div><div class="p-r-b"></div>
+        </div>
+        <div class="logo-text">stb<span>Director</span></div>
+    </div>
+
+    <nav>
+        <a href="#video-top">Home</a>
+        <a href="#features-sec">Features</a>
+        <a href="#specs-sec">Specs</a>
+		<a href="https://stbdirector.com/store" target="_blank"></i> Store</a>
+        <a href="https://stbdirector.com/support" target="_blank"></i> Help</a>
+    </nav>
+</header>
+
+<section id="video-top" class="section-padding hero-white">
+    <div class="container">
+        <h1>Professional Pre-viz Pipeline</h1>
+        <p style="font-size: 1.2rem; color: var(--text-muted);">The ultimate toolkit for pre-viz artists, animators, and directors.</p>
+        
+        <div class="video-box">
+			<iframe src="https://www.youtube.com/embed/bd7kh2kxnAE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+		</div>
+        <div>
+            <a href="https://stbdirector.gumroad.com/l/stb_director_v1" class="btn btn-pro"><i class="fas fa-rocket"></i> Get Pro Version</a>
+            <a href="https://stbdirector.gumroad.com/l/stb_light_v1" class="btn btn-light"><i class="fas fa-download"></i> Try Light Version</a>
+        </div>
+    </div>
+</section>
+
+<section id="features-sec" class="section-padding features-grey">
+    <div class="container">
+        <h2><span>Key System Features & Tips</span></h2>
+        <div class="grid">
+            <div class="card"><i class="fas fa-bullseye"></i><h3>Smart Targeting System</h3><p>Centralized Dummy management allows you to swap characters and frame shots instantly without losing cinematic data.</p></div>
+            <div class="card"><i class="fas fa-th"></i><h3>1,040 Cinematic Setups</h3><p>A massive library of camera angles, shot sizes, and movement combinations tailored for high-end production.</p></div>
+            <div class="card"><i class="fas fa-film"></i><h3>Automated Sequencer</h3><p>Sync shots directly to a timed edit, creating a professional cinematic sequence in seconds.</p></div>
+            <div class="card"><i class="fas fa-vector-square"></i><h3>Production-Ready Composition</h3><p>Intuitive tools to manage focal lengths, safe areas, and shot framing within a unified directorial environment.</p></div>
+            <div class="card"><i class="fas fa-file-export"></i><h3>Digital Manifest Export</h3><p>Export professional HTML review pages and metadata manifests for easy directorial feedback.</p></div>
+            <div class="card"><i class="fas fa-bolt"></i><h3>Batch Rendering Engine</h3><p>Generate high-quality previews for all your shots with a single click, perfectly organized for review.</p></div>
+        </div>
+    </div>
+</section>
+
+<section id="specs-sec" class="section-padding specs-white">
+    <div class="container">
+        <h2><span>System Specifications</span></h2>
+        <div class="grid">
+            <div class="spec-item"><strong>Modern Core</strong>Built on Python 3 for peak performance and future-proof integration.</div>
+            <div class="spec-item"><strong>Universal Support</strong>Fully compatible with Maya 2020+ and the latest industry standards.</div>
+            <div class="spec-item"><strong>Workflow Architecture</strong>Designed specifically for professional Character Animation & VFX pipelines.</div>
+            <div class="spec-item"><strong>Scalability</strong>Independent architecture ready to grow with your production needs.</div>
+			<div class="spec-item"><strong>Zero-Configuration</strong>One-click setup process with no external dependencies for immediate deployment.</div>
+			<div class="spec-item"><strong>Lightweight Performance</strong>Optimized memory footprint that maintains Maya’s stability even in complex scenes.</div>
+        </div>
+    </div>
+</section>
+
+<footer>
+    stbDirector v1.4 | CINEMATIC PRE-VIZ HUB
+</footer>
+
+</body>
+</html>
